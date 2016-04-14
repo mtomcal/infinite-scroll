@@ -1,0 +1,30 @@
+@import "./normalize.css";
+
+button {
+  background-color: #40a070;
+  color: white;
+  border-radius: 10px;
+  padding: 1rem;
+  border: none;
+}
+.container {
+  max-width: 480px;
+  .item {
+    display: flex;
+    flex-flow: row nowrap;
+    padding: 1rem 0 1rem 0;
+    border-top: 1px solid #ccc;
+
+    .image-component {
+      flex-item: 0 0 auto;
+      width: 100px;
+      height: 100px;
+    }
+
+    span {
+      margin: auto 0 auto 1rem;
+      vertical-align: middle;
+      flex-item: 0 1 auto;
+    }
+  }
+}

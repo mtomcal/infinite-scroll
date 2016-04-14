@@ -3,12 +3,13 @@ var webpack = require('webpack');
 
 module.exports = {
   devtool: 'source-map',
-  entry: [
-    './src/index'
-  ],
+  entry: {
+    app: './src/index',
+    worker: './src/worker/index'
+  },
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: '[name].js',
     publicPath: '/static/'
   },
   plugins: [
@@ -33,7 +34,7 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        loaders: ['style', 'css?sourceMap', 'scss?sourceMap']
+        loaders: ['style', 'css?sourceMap', 'sass?sourceMap']
       },
       {
         test: /\.(png|jpg|woff|otf|woff2|eot|ttf|svg)+$/,
