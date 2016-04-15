@@ -1,6 +1,7 @@
 import React from 'react';
 import WorkerFacade from './workerFacade';
 import _ from 'lodash';
+import Infinite from 'react-infinite';
 
 const WEB_WORKER = 'dist/worker.js';
 
@@ -25,6 +26,9 @@ export default class App extends React.Component {
         this.worker = new WorkerFacade(WEB_WORKER);
         this.unsub = this.worker.listen(this.onMessage.bind(this));
     }
+    componentDidMount() {
+        // this.getData();
+    }
     componentWillUnmount() {
         this.worker = null;
         this.unsub();
@@ -39,19 +43,24 @@ export default class App extends React.Component {
                 return _.get(item, 'name');
             })
             .map(function (item, index) {
-                return <li className='item' key={`item-${index}`}>
+                return <div className='item' key={`item-${index}`}>
                     <img className={`image-component`} src={_.get(item, 'images[1].url')} />
                     <span>{item.name}</span>
-                </li>;
+                </div>;
             })
     }
     render() {
         // console.log(this.state);
         return <div>
-            <button onClick={this.getData.bind(this)}>Get Data</button>
-            <ul className='container'>
+            <Infinite className="container"
+                      useWindowAsScrollContainer
+                      elementHeight={310}
+                      preloadBatchSize={3100}
+                      onInfiniteLoad={this.getData.bind(this)}
+                      preloadAdditionalHeight={Infinite.containerHeightScaleFactor(3)}
+                      infiniteLoadBeginEdgeOffset={310*10}>
                 {this.renderItems()}
-            </ul>
+            </Infinite>
         </div>;
     }
 }

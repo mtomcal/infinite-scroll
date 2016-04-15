@@ -1,4 +1,4 @@
-// import axios from 'axios';
+import 'isomorphic-fetch';
 
 const ARTIST_ID = `0SfsnGyD8FpIN4U4WCkBZ5`;
 
@@ -19,7 +19,7 @@ function resolver(action) {
         case 'LOAD_INFO':
             getAlbums({numOfItems: 10, page: action.page})
                 .then(function (data) {
-                    state = Object.assign({}, {albums: [...data.items, ...state.albums]});
+                    state = Object.assign({}, {albums: [...state.albums, ...data.items]});
                     postMessage(JSON.stringify(state));
                 });
         default:

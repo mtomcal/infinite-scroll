@@ -8,21 +8,22 @@ button {
   border: none;
 }
 .container {
-  max-width: 480px;
+  width: 100%;
   .item {
     display: flex;
     flex-flow: row nowrap;
-    padding: 1rem 0 1rem 0;
+    padding: 10px 0 10px 0;
     border-top: 1px solid #ccc;
+    height: 300px;
 
-    .image-component {
+    img.image-component {
       flex-item: 0 0 auto;
-      width: 100px;
-      height: 100px;
+      width: 300px;
     }
 
     span {
       margin: auto 0 auto 1rem;
+      font-size: 2rem;
       vertical-align: middle;
       flex-item: 0 1 auto;
     }
